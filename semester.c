@@ -96,3 +96,22 @@ void print_semester(semester s)
     }
     printf_s("\n");
 }
+
+semester copy_semester(semester s)
+{
+    semester temp = new_semester(s.s_level, s.current_semester);
+    result r;
+    for (size_t i = 0; i < sizeof(s.courses) / sizeof(s.courses[0]); i++)
+    {
+        if (!(strcmp(s.courses[i].code, " ") == 0))
+        {
+            strcpy(r.code, s.courses[i].code);
+            r.grade = s.courses[i].grade;
+            r.unit = s.courses[i].unit;
+
+            add_course_to_semester(&temp, r);
+        }
+    }
+
+    return temp;
+}

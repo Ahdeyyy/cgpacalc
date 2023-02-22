@@ -3,6 +3,7 @@
 
 typedef enum levels
 {
+    empty_l = 0,
     one_hundred = 100,
     two_hundred = 200,
     three_hundred = 300,
@@ -12,6 +13,7 @@ typedef enum levels
 
 enum semester_number
 {
+    empty_s = 0,
     first = 1,
     second
 };
@@ -40,5 +42,7 @@ semester new_semester(enum levels, enum semester_number);
 int remove_course_from_semester(semester *, char *);
 void print_semester(semester);
 int write_semester_to_file(char *, semester);
+semester read_semester_from_file(char *, int);
+semester copy_semester(semester);
 
 #endif

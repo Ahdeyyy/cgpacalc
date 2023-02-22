@@ -25,15 +25,23 @@ int main()
   add_course_to_semester(&s1, f2);
   add_course_to_semester(&s1, f3);
 
+  // semester s2 = copy_semester(s1);
+
   print_semester(s1);
+  // print_semester(s2);
 
-  int err = write_semester_to_file("results.bin", s1);
+  // write_semester_to_file("./results.bin", s1);
+  // write_semester_to_file("./results.bin", s1);
+  // write_semester_to_file("./results.bin", s1);
 
-  if (err == -1)
+  semester s = read_semester_from_file("./results.bin", 2);
+
+  if (s.s_level != empty_l || s.current_semester != empty_s)
   {
-    printf_s("error occured while writing to file");
+    // print_semester(s);
   }
 
+  // print_semester(s);
   // float cgpa;
 
   // // add score - unit gpa grade
