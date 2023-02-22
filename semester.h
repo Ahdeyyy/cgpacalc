@@ -43,6 +43,8 @@ int remove_course_from_semester(semester *, char *);
 void print_semester(semester);
 int write_semester_to_file(char *, semester);
 semester read_semester_from_file(char *, int);
+int edit_semester_in_file(char *, semester, int);
+int semester_count_in_file(char *);
 semester copy_semester(semester);
 
 #endif

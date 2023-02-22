@@ -25,21 +25,21 @@ int main()
   add_course_to_semester(&s1, f2);
   add_course_to_semester(&s1, f3);
 
-  // semester s2 = copy_semester(s1);
+  semester s2 = copy_semester(s1);
+  s2.current_semester = first;
 
-  print_semester(s1);
+  // print_semester(s1);
   // print_semester(s2);
 
-  // write_semester_to_file("./results.bin", s1);
-  // write_semester_to_file("./results.bin", s1);
-  // write_semester_to_file("./results.bin", s1);
+  write_semester_to_file("./results.bin", s1);
+  write_semester_to_file("./results.bin", s1);
+  write_semester_to_file("./results.bin", s1);
 
   semester s = read_semester_from_file("./results.bin", 2);
-
-  if (s.s_level != empty_l || s.current_semester != empty_s)
-  {
-    // print_semester(s);
-  }
+  print_semester(s);
+  edit_semester_in_file("results.bin", s2, 2);
+  s = read_semester_from_file("./results.bin", 2);
+  print_semester(s);
 
   // print_semester(s);
   // float cgpa;
