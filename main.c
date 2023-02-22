@@ -27,6 +27,13 @@ int main()
 
   print_semester(s1);
 
+  int err = write_semester_to_file("results.bin", s1);
+
+  if (err == -1)
+  {
+    printf_s("error occured while writing to file");
+  }
+
   // float cgpa;
 
   // // add score - unit gpa grade

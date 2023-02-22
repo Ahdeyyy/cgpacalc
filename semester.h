@@ -39,5 +39,6 @@ int add_course_to_semester(semester *, result);
 semester new_semester(enum levels, enum semester_number);
 int remove_course_from_semester(semester *, char *);
 void print_semester(semester);
+int write_semester_to_file(char *, semester);
 
 #endif

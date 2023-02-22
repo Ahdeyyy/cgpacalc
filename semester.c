@@ -38,6 +38,8 @@ semester new_semester(enum levels level, enum semester_number semester_num)
     semester s;
     s.current_semester = semester_num;
     s.s_level = level;
+    s.total_points = 0.0;
+    s.total_units = 0;
     for (size_t i = 0; i < sizeof(s.courses) / sizeof(s.courses[0]); i++)
     {
         strcpy(s.courses[i].code, " ");
@@ -88,7 +90,7 @@ void print_semester(semester s)
     {
         if (!(strcmp(s.courses[i].code, " ") == 0))
         {
-            printf_s("|     %s       |      %.2f       |       %d      |\n", s.courses[i].code, get_grade_point(s.courses[i].grade), s.courses[i].unit);
+            printf_s("|     %s       |       %c         |       %d      |\n", s.courses[i].code, toupper(s.courses[i].grade), s.courses[i].unit);
             printf_s("_____________________________________________________\n");
         }
     }
