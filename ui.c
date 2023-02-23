@@ -19,7 +19,7 @@ void display_home_menu()
         printf("-----------------------------------------------------\n");
         printf("| 2 | Add result                                    |\n");
         printf("-----------------------------------------------------\n");
-        printf("| 3 | Edit course                                   |\n");
+        printf("| 3 | Edit result                                   |\n");
         printf("-----------------------------------------------------\n");
         printf("| 4 | Delete course                                 |\n");
         printf("-----------------------------------------------------\n");
@@ -37,6 +37,9 @@ void display_home_menu()
             break;
         case 2:
             add_result_menu(file_path);
+            break;
+        case 3:
+            edit_result_menu(file_path);
             break;
         default:
             break;
@@ -174,4 +177,10 @@ void add_new_semester_menu(char *file_path)
     system("pause");
 
     printf("\e[1;1H\e[2J");
+}
+
+void edit_result_menu(char *file_name)
+{
+    printf("coming soon...\n");
+    system("pause");
 }
