@@ -129,7 +129,7 @@ void select_result_menu(char *file_path)
                 scanf_s("%d", &unit);
 
                 printf("Enter the grade: ");
-                getchar(); // flushing the input stream would be a better option
+                fflush(stdin);
                 grade = getchar();
 
                 result r;
