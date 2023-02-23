@@ -15,7 +15,7 @@ float calculate_cgpa();
 int main()
 {
 
-  char *file_path = "./results.bin";
+  display_home_menu();
   // semester s = read_semester_from_file("./results.bin", 2);
   // print_semester(s);
   // edit_semester_in_file("results.bin", s2, 2);
