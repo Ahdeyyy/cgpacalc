@@ -1,5 +1,6 @@
-#include <stdio.h>
 #include "semester.h"
+
+#include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 
@@ -25,7 +26,7 @@ void display_home_menu()
         printf("-----------------------------------------------------\n");
         printf("| 4 | Delete result                                 |\n");
         printf("-----------------------------------------------------\n");
-        printf("|-1 | Quit program                                  |\n");
+        printf("|-1 | Quit                                          |\n");
         printf("-----------------------------------------------------\n");
         scanf_s("%d", &control);
 
@@ -57,6 +58,7 @@ void view_result_menu(char *file_path)
 {
     int i = semester_count_in_file(file_path);
     float gpa_acc = 0.0;
+    float cgpa = 0.0;
     semester s;
 
     for (int j = 1; j <= i; j++)
@@ -70,8 +72,12 @@ void view_result_menu(char *file_path)
         }
         print_semester(s);
     }
+    if (gpa_acc > 0)
+    {
+        cgpa = gpa_acc / i;
+    }
     printf("-----------------------------------------------------\n");
-    printf("|                   CGPA: %.2f                      |\n", gpa_acc / i);
+    printf("|                   CGPA: %.2f                      |\n", cgpa);
     printf("-----------------------------------------------------\n");
     system("pause");
 }
@@ -127,6 +133,7 @@ void select_result_menu(char *file_path)
         printf("-----------------------------------------------------\n");
         printf("|-1 | Go Back                                       |\n");
         printf("-----------------------------------------------------\n");
+        printf("Pick a semester (-1 to go back): ");
         scanf_s("%d", &control);
         printf("\e[1;1H\e[2J");
         if (control != -1)
@@ -214,7 +221,7 @@ void delete_result_menu(char *file_path)
         printf("-----------------------------------------------------\n");
         printf("|-1 | Go Back                                       |\n");
         printf("-----------------------------------------------------\n");
-        printf("choose a semester to delete (-1 to go back)\n");
+        printf("choose a semester to delete (-1 to go back): ");
         scanf_s("%d", &control);
         // printf("\e[1;1H\e[2J");
         system("clear");
