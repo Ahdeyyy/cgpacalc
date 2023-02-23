@@ -47,6 +47,7 @@ void display_home_menu()
 void view_result_menu(char *file_path)
 {
     int i = semester_count_in_file(file_path);
+    float gpa_acc = 0.0;
     semester s;
 
     for (int j = 1; j <= i; j++)
@@ -54,8 +55,15 @@ void view_result_menu(char *file_path)
         printf("-----------------------------------------------------\n");
         printf("|                         %d                         |\n", j);
         s = read_semester_from_file(file_path, j);
+        if (s.total_units != 0)
+        {
+            gpa_acc += (s.total_points / s.total_units);
+        }
         print_semester(s);
     }
+    printf("-----------------------------------------------------\n");
+    printf("|                   CGPA: %.2f                      |\n", gpa_acc / i);
+    printf("-----------------------------------------------------\n");
     system("pause");
 }
 

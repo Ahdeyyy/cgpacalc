@@ -83,7 +83,7 @@ void print_semester(semester s)
     (s.current_semester == first) ? strcpy_s(s_suffix, sizeof(s_suffix), "st") : strcpy_s(s_suffix, sizeof(s_suffix), "nd");
 
     printf_s("-----------------------------------------------------\n");
-    printf_s("|              %d Level         %d%s semester       |\n", s.s_level, s.current_semester, s_suffix);
+    printf_s("|              %d Level         %d%s Semester       |\n", s.s_level, s.current_semester, s_suffix);
     printf_s("-----------------------------------------------------\n");
     printf_s("|                    GPA: %.2f                      |\n", gpa);
     printf_s("-----------------------------------------------------\n");
