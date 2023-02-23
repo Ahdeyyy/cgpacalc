@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "semester.h"
+#include <ctype.h>
 #include <stdlib.h>
 
 void display_home_menu()
@@ -10,7 +11,8 @@ void display_home_menu()
 
     while (control != -1)
     {
-        printf("\e[1;1H\e[2J");
+        // printf("\e[1;1H\e[2J");
+        system("clear");
         printf("\n");
         printf("-----------------------------------------------------\n");
         printf("|                 CGPA CALCULATOR                   |\n");
@@ -21,13 +23,14 @@ void display_home_menu()
         printf("-----------------------------------------------------\n");
         printf("| 3 | Edit result                                   |\n");
         printf("-----------------------------------------------------\n");
-        printf("| 4 | Delete course                                 |\n");
+        printf("| 4 | Delete result                                 |\n");
         printf("-----------------------------------------------------\n");
         printf("|-1 | Quit program                                  |\n");
         printf("-----------------------------------------------------\n");
         scanf_s("%d", &control);
 
-        printf("\e[1;1H\e[2J");
+        // printf("\e[1;1H\e[2J");
+        system("clear");
         switch (control)
         {
         case -1:
@@ -40,6 +43,9 @@ void display_home_menu()
             break;
         case 3:
             edit_result_menu(file_path);
+            break;
+        case 4:
+            delete_result_menu(file_path);
             break;
         default:
             break;
@@ -85,7 +91,8 @@ void add_result_menu(char *file_path)
         printf("|-1 | Go Back                                       |\n");
         printf("-----------------------------------------------------\n");
         scanf_s("%d", &control);
-        printf("\e[1;1H\e[2J");
+        // printf("\e[1;1H\e[2J");
+        system("clear");
         switch (control)
         {
         case -1:
@@ -176,11 +183,71 @@ void add_new_semester_menu(char *file_path)
 
     system("pause");
 
-    printf("\e[1;1H\e[2J");
+    // printf("\e[1;1H\e[2J");
+    system("clear");
 }
 
 void edit_result_menu(char *file_name)
 {
     printf("coming soon...\n");
     system("pause");
+    system("clear");
+}
+
+void delete_result_menu(char *file_path)
+{
+    int control = 0;
+    int i = semester_count_in_file(file_path);
+    semester s;
+    while (control != -1)
+    {
+
+        // printf("\e[1;1H\e[2J");
+        system("clear");
+        for (int j = 1; j <= i; j++)
+        {
+            printf("-----------------------------------------------------\n");
+            printf("|                         %d                         |\n", j);
+            s = read_semester_from_file(file_path, j);
+            print_semester(s);
+        }
+        printf("-----------------------------------------------------\n");
+        printf("|-1 | Go Back                                       |\n");
+        printf("-----------------------------------------------------\n");
+        printf("choose a semester to delete (-1 to go back)\n");
+        scanf_s("%d", &control);
+        // printf("\e[1;1H\e[2J");
+        system("clear");
+        if (control != -1)
+        {
+
+            if (control < 0 || control > i)
+            {
+                printf("Pick a valid index\n");
+            }
+            else
+            {
+                char choice;
+
+                printf("Do you want to delete it [y] [n]: ");
+                fflush(stdin);
+                choice = getchar();
+
+                if (choice == 'y' || choice == toupper('y'))
+                {
+                    if (delete_semester_in_file(file_path, control) != 0)
+                    {
+                        printf("error deleting the semester!\n");
+                    }
+                    else
+                    {
+
+                        printf("successfully deleted the semester!\n");
+                        i--;
+                    }
+                    system("pause");
+                }
+            }
+        }
+    }
 }

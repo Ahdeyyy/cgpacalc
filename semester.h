@@ -53,5 +53,6 @@ void add_result_menu(char *);
 void select_result_menu(char *);
 void add_new_semester_menu(char *);
 void edit_result_menu(char *);
+void delete_result_menu(char *);
 
 #endif
