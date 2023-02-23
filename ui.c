@@ -35,7 +35,9 @@ void display_home_menu()
         case 1:
             view_result_menu(file_path);
             break;
-
+        case 2:
+            add_result_menu();
+            break;
         default:
             break;
         }
@@ -53,4 +55,30 @@ void view_result_menu(char *file_path)
         print_semester(s);
     }
     system("pause");
+}
+
+void add_result_menu()
+{
+    int control = 0;
+    while (control != -1)
+    {
+        printf("-----------------------------------------------------\n");
+        printf("|                     ADD RESULT                    |\n");
+        printf("-----------------------------------------------------\n");
+        printf("| 1 | Add course to semester                        |\n");
+        printf("-----------------------------------------------------\n");
+        printf("| 2 | Add new semester                              |\n");
+        printf("-----------------------------------------------------\n");
+        printf("|-1 | Go Back                                       |\n");
+        printf("-----------------------------------------------------\n");
+        scanf_s("%d", &control);
+        printf("\e[1;1H\e[2J");
+        switch (control)
+        {
+        case -1:
+            break;
+        default:
+            break;
+        }
+    }
 }

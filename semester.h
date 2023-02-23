@@ -49,5 +49,6 @@ int delete_semester_in_file(char *, int);
 semester copy_semester(semester);
 void display_home_menu();
 void view_result_menu(char *);
+void add_result_menu();
 
 #endif
