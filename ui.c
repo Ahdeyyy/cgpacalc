@@ -82,6 +82,9 @@ void add_result_menu(char *file_path)
         case 1:
             select_result_menu(file_path);
             break;
+        case 2:
+            add_new_semester_menu(file_path);
+            break;
         default:
             break;
         }
@@ -141,4 +144,26 @@ void select_result_menu(char *file_path)
             }
         }
     }
+}
+
+void add_new_semester_menu(char *file_path)
+{
+    enum levels level;
+    enum semester_number semester_num;
+
+    printf("Enter the level (100 - 500): ");
+    scanf_s("%d", &level);
+
+    printf("Enter the semester number (1st or 2nd): ");
+    scanf_s("%d", &semester_num);
+
+    semester s = new_semester(level, semester_num);
+
+    write_semester_to_file(file_path, s);
+
+    print_semester(s);
+
+    system("pause");
+
+    printf("\e[1;1H\e[2J");
 }

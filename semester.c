@@ -69,7 +69,15 @@ int remove_course_from_semester(semester *s_record, char *course_code)
 
 void print_semester(semester s)
 {
-    float gpa = s.total_points / s.total_units;
+    float gpa;
+    if (s.total_units == 0)
+    {
+        gpa = 0.0;
+    }
+    else
+    {
+        gpa = s.total_points / s.total_units;
+    }
     char s_suffix[3];
 
     (s.current_semester == first) ? strcpy_s(s_suffix, sizeof(s_suffix), "st") : strcpy_s(s_suffix, sizeof(s_suffix), "nd");
