@@ -19,7 +19,7 @@ void display_home_menu()
         printf("-----------------------------------------------------\n");
         printf("| 2 | Add result                                    |\n");
         printf("-----------------------------------------------------\n");
-        printf("| 3 | Add course                                    |\n");
+        printf("| 3 | Edit course                                   |\n");
         printf("-----------------------------------------------------\n");
         printf("| 4 | Delete course                                 |\n");
         printf("-----------------------------------------------------\n");
@@ -36,7 +36,7 @@ void display_home_menu()
             view_result_menu(file_path);
             break;
         case 2:
-            add_result_menu();
+            add_result_menu(file_path);
             break;
         default:
             break;
@@ -49,15 +49,17 @@ void view_result_menu(char *file_path)
     int i = semester_count_in_file(file_path);
     semester s;
 
-    for (; i > 0; i--)
+    for (int j = 1; j <= i; j++)
     {
-        s = read_semester_from_file(file_path, i);
+        printf("-----------------------------------------------------\n");
+        printf("|                         %d                         |\n", j);
+        s = read_semester_from_file(file_path, j);
         print_semester(s);
     }
     system("pause");
 }
 
-void add_result_menu()
+void add_result_menu(char *file_path)
 {
     int control = 0;
     while (control != -1)
@@ -77,8 +79,66 @@ void add_result_menu()
         {
         case -1:
             break;
+        case 1:
+            select_result_menu(file_path);
+            break;
         default:
             break;
+        }
+    }
+}
+
+void select_result_menu(char *file_path)
+{
+    int control = 0;
+    int i = semester_count_in_file(file_path);
+    semester s;
+    while (control != -1)
+    {
+
+        for (int j = 1; j <= i; j++)
+        {
+            printf("-----------------------------------------------------\n");
+            printf("|                         %d                         |\n", j);
+            s = read_semester_from_file(file_path, j);
+            print_semester(s);
+        }
+        printf("-----------------------------------------------------\n");
+        printf("|-1 | Go Back                                       |\n");
+        printf("-----------------------------------------------------\n");
+        scanf_s("%d", &control);
+        printf("\e[1;1H\e[2J");
+        if (control != -1)
+        {
+
+            if (control < 0 || control > i)
+            {
+                printf("Pick a valid index\n");
+            }
+            else
+            {
+                s = read_semester_from_file(file_path, control);
+                char grade;
+                int unit = 0;
+                char code[8];
+
+                printf("Enter the course code (max of 8 characters): ");
+                scanf_s("%s", code);
+
+                printf("Enter the unit: ");
+                scanf_s("%d", &unit);
+
+                printf("Enter the grade: ");
+                getchar(); // flushing the input stream would be a better option
+                grade = getchar();
+
+                result r;
+                r.unit = unit;
+                r.grade = grade;
+                strcpy_s(r.code, sizeof(r.code), code);
+                add_course_to_semester(&s, r);
+                edit_semester_in_file(file_path, s, control);
+            }
         }
     }
 }

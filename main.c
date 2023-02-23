@@ -65,6 +65,7 @@ int main()
   //   }
   // }
 
+  system("clear");
   // // view stored grades show cgpa here
   return 0;
 }
