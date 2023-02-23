@@ -74,24 +74,24 @@ void print_semester(semester s)
 
     (s.current_semester == first) ? strcpy_s(s_suffix, sizeof(s_suffix), "st") : strcpy_s(s_suffix, sizeof(s_suffix), "nd");
 
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
     printf_s("|              %d Level         %d%s semester       |\n", s.s_level, s.current_semester, s_suffix);
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
     printf_s("|                    GPA: %.2f                      |\n", gpa);
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
     printf_s("| Total points: %.0f                                  |\n", s.total_points);
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
     printf_s("| Total units: %d                                    |\n", s.total_units);
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
     printf_s("|    course code   |     grade       |      unit    |\n");
-    printf_s("_____________________________________________________\n");
+    printf_s("-----------------------------------------------------\n");
 
     for (size_t i = 0; i < sizeof(s.courses) / sizeof(s.courses[0]); i++)
     {
         if (!(strcmp(s.courses[i].code, " ") == 0))
         {
             printf_s("|     %s       |       %c         |       %d      |\n", s.courses[i].code, toupper(s.courses[i].grade), s.courses[i].unit);
-            printf_s("_____________________________________________________\n");
+            printf_s("-----------------------------------------------------\n");
         }
     }
     printf_s("\n");

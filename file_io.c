@@ -107,3 +107,36 @@ int semester_count_in_file(char *file_path)
     fclose(pFile); // closing after reading its content
     return i;
 }
+
+int delete_semester_in_file(char *file_path, int index)
+{
+
+    FILE *pFile;
+    pFile = fopen(file_path, "rb");
+    index--;
+    int i = semester_count_in_file(file_path); // the index to use for the loop
+    semester *list = malloc(sizeof(semester) * i);
+    if (pFile == NULL)
+    {
+        return -1;
+    }
+    fread(list, 1, sizeof(semester) * i, pFile);
+
+    fclose(pFile); // closing after reading its content
+
+    pFile = fopen(file_path, "wb");
+    if (pFile == NULL)
+    {
+        return -1;
+    }
+    for (size_t j = 0; j < i; j++)
+    {
+        if (j != index)
+        {
+            fwrite(list, sizeof(semester), 1, pFile);
+        }
+        list++;
+    }
+    fclose(pFile);
+    return 0;
+}

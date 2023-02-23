@@ -45,6 +45,8 @@ int write_semester_to_file(char *, semester);
 semester read_semester_from_file(char *, int);
 int edit_semester_in_file(char *, semester, int);
 int semester_count_in_file(char *);
+int delete_semester_in_file(char *, int);
 semester copy_semester(semester);
+void display_home_menu();
 
 #endif
